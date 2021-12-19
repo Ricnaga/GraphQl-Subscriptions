@@ -68,4 +68,4 @@ $ yarn frontend:start (caso não utilize o yarn: npm run frontend:start)
 Gostou? tem alguma sugestão de melhoria? por favor, entre em contato e ja aproveita e me adiciona.<br>
 
 #
-<div align="center"> <img src="https://img.shields.io/github/license/Ricnaga/lacademi-frontend?color=purple&style=for-the-badge"/> </div>
+<div align="center"> <img src="https://img.shields.io/github/license/Ricnaga/GraphQl-Subscriptions?color=purple&style=for-the-badge"/> </div>
