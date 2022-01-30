@@ -1,6 +1,6 @@
 <div align="center">
   <img src="./cover1.jpg" />
-  <img src="./cover2.jpg" />
+  <img src="./cover2_1.jpg" />
 </div>
 
 # <div align="center"> GraphQL Subscriptions </div>
