@@ -1,12 +1,14 @@
+import { CssBaseline } from "@mui/material";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Navbar } from "./component/Navbar";
+import { Sidebar } from "./component/Sidebar";
 import { RoutesPages } from "./routes";
 
 export function App() {
   return (
     <BrowserRouter>
-    <Navbar />
+      <CssBaseline />
+      <Sidebar />
       <RoutesPages />
     </BrowserRouter>
   );

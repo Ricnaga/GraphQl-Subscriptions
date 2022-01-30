@@ -1,6 +1,6 @@
 const {
-  USER_ADDED_EVENT_LABEL,
-} = require("../../Services/Subscriptions/EventLabels");
+  USER_ADDED_TOPIC,
+} = require("../../Services/Subscriptions/Topics");
 const { users } = require("../../utils/constants");
 const Mutation = {
   //criando um novo usuario
@@ -12,7 +12,7 @@ const Mutation = {
       active: true,
     };
     users.push(newUser);
-    pubSub.publish(USER_ADDED_EVENT_LABEL, { userAdded: newUser });
+    pubSub.publish(USER_ADDED_TOPIC, { userAdded: newUser });
     return newUser;
   },
 };

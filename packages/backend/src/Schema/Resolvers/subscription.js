@@ -1,13 +1,13 @@
 const {
-  USER_ADDED_EVENT_LABEL,
-} = require("../../Services/Subscriptions/EventLabels");
+  USER_ADDED_TOPIC,
+} = require("../../Services/Subscriptions/Topics");
 
 const Subscription = {
   //criação do canal
   userAdded: {
     // nome do canal criado
     subscribe: (_, __, { pubSub }) =>
-      pubSub.asyncIterator([USER_ADDED_EVENT_LABEL]),
+      pubSub.asyncIterator([USER_ADDED_TOPIC]),
   },
 };
 

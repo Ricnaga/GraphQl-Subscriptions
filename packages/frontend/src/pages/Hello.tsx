@@ -1,5 +1,6 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
+import { Skeleton, Typography } from "@mui/material";
 
 const HELLO_QUERY = gql`
   query HelloQuery {
@@ -9,9 +10,25 @@ const HELLO_QUERY = gql`
 
 export function Hello() {
   const { data, loading, error } = useQuery(HELLO_QUERY);
+  
+  if (loading)
+    return (
+      <Typography align="center" variant="h3">
+        Carregando...
+      </Typography>
+    );
+  if (error)
+    return (
+      <Typography align="center" variant="h3">
+        Erro :(
+      </Typography>
+    );
 
-  if (loading) return <p>Carregando...</p>;
-  if (error) return <p>Erro :(</p>;
+  if (!data) return <Skeleton animation="wave" />;
 
-  return <h1>{data.hello}</h1>;
+  return (
+    <Typography align="center" variant="h1">
+      {data.hello}
+    </Typography>
+  );
 }

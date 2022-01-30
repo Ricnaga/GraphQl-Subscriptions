@@ -13,7 +13,7 @@ const {
 // Mutation => Manipular informações como se fosse (POST, PUT, PATCH, DELETE)
 // Scalar Types => String, Int, Boolean, ID
 
-async function createApolloServer(app, httpSv) {
+function createApolloServer(app, httpSv) {
   const { subscriptionServer, pubSub } = createSubscriptionServer(
     schema,
     httpSv
@@ -25,8 +25,9 @@ async function createApolloServer(app, httpSv) {
     plugins: [destroySubscriptionServer(subscriptionServer)],
   });
 
-  await instanceOfApolloServer.start();
-  instanceOfApolloServer.applyMiddleware({ app });
+  instanceOfApolloServer
+    .start()
+    .then(() => instanceOfApolloServer.applyMiddleware({ app }));
 }
 
 module.exports = { createApolloServer };

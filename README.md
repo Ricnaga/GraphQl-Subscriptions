@@ -17,6 +17,7 @@
 #### - Query | useQuery | useLazyQuery
 #### - Mutations | useMutations
 #### - Subscriptions | useSubscriptions
+#### - MaterialUI
 
 ## <div align="center"> Sumário </div>
 <!--ts-->
@@ -56,6 +57,7 @@ $ yarn frontend:start (caso não utilize o yarn: npm run frontend:start)
 ##  <div align="center">Tecnologias utilizadas</div>
 - [GraphQL](https://graphql.org/)
 - [Reactjs](https://reactjs.org/)
+- [MaterialUI](https://mui.com/)
 - [Apollo Server](https://www.apollographql.com/docs/apollo-server/)
 - [Apollo Client for React](https://www.apollographql.com/docs/react/)
 

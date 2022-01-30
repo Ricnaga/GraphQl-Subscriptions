@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useLazyQuery } from "@apollo/client";
 import {
   Button,
   ButtonGroup,
@@ -10,9 +10,9 @@ import {
 } from "@mui/material";
 import styled from "@emotion/styled";
 
-const CREATEUSER_MUTATION = gql`
-  mutation CreateUserMutation($name: String!, $email: String!) {
-    createUser(name: $name, email: $email) {
+const GETUSERBYEMAIL_QUERY = gql`
+  query GetUserByEmailQuery($email: String!) {
+    getUserByEmail(email: $email) {
       _id
       name
       email
@@ -21,12 +21,19 @@ const CREATEUSER_MUTATION = gql`
   }
 `;
 
-export function Mutations() {
-  const [name, setName] = useState<string | null>(null);
-  const [email, setEmail] = useState<string | null>(null);
+type GetUserByEmailProps = {
+  getUserByEmail: {
+    _id: string;
+    name: string;
+    email: string;
+    active: boolean;
+  };
+};
 
-  const [handleCreateUser, { data, loading, error }] =
-    useMutation(CREATEUSER_MUTATION);
+export function LazyQueries() {
+  const [email, setEmail] = useState<string | null>(null);
+  const [handleUsers, { data, loading, error }] =
+    useLazyQuery<GetUserByEmailProps>(GETUSERBYEMAIL_QUERY);
 
   if (loading)
     return (
@@ -41,45 +48,31 @@ export function Mutations() {
       </Typography>
     );
 
-  async function onCreateUserDefault() {
-    await handleCreateUser({
+  const onListDefaultUser = async () =>
+    handleUsers({
       variables: {
-        name: "User Example",
-        email: "User.example@email.com",
+        email: "teste1@gmail.com",
       },
     });
-  }
 
-  async function onCreateUser() {
-    await handleCreateUser({
+  const onListUser = async () =>
+    handleUsers({
       variables: {
-        name,
         email,
       },
     });
-    setName(null);
-    setEmail(null);
-  }
 
   return (
     <Grid container>
       <Grid item xs={12} marginBottom={4}>
         <Typography align="center" variant="h1">
-          Mutations
+          Lazy Queries
         </Typography>
         <Typography align="center" variant="body1" marginY={2}>
-          Quando clica no botão a mutation criará um dado novo
+          Só quando clica no botão a query é executada :)
         </Typography>
       </Grid>
       <Grid item xs={6} paddingX={4}>
-        <Grid>
-          <TextField
-            label="Digite um nome"
-            variant="filled"
-            fullWidth
-            onChange={(e) => setName(e.target.value)}
-          />
-        </Grid>
         <Grid paddingY={5}>
           <TextField
             type="email"
@@ -90,15 +83,11 @@ export function Mutations() {
           />
         </Grid>
         <ButtonGroup variant="contained" size="large">
-          <Button
-            type="submit"
-            disabled={!name && !email}
-            onClick={onCreateUser}
-          >
+          <Button type="submit" disabled={!email} onClick={onListUser}>
             Criar usuário
           </Button>
-          <Button color="secondary" onClick={onCreateUserDefault}>
-            Clique aqui para criar usuário automático
+          <Button color="secondary" onClick={onListDefaultUser}>
+            Clique aqui para listar usuário com email "teste1@gmail.com"
           </Button>
         </ButtonGroup>
       </Grid>
@@ -106,16 +95,16 @@ export function Mutations() {
         <Grid item xs={6} paddingX={4}>
           <StyledCard>
             <Typography align="center" variant="body2">
-              id:{data.createUser._id}
+              id:{data.getUserByEmail._id}
             </Typography>
             <Typography align="left" variant="body2">
-              name: {data.createUser.name}
+              name: {data.getUserByEmail.name}
             </Typography>
             <Typography align="left" variant="body2">
-              email: {data.createUser.email}
+              email: {data.getUserByEmail.email}
             </Typography>
             <Typography align="left" variant="body2">
-              active: {data.createUser.active ? "true" : "false"}
+              active: {data.getUserByEmail.active ? "true" : "false"}
             </Typography>
           </StyledCard>
         </Grid>
@@ -126,4 +115,5 @@ export function Mutations() {
 
 const StyledCard = styled(Card)`
   padding: 1rem;
+  max-width: 500px;
 `;
