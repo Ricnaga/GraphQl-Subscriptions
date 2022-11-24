@@ -1,5 +1,4 @@
 import { CssBaseline } from "@mui/material";
-import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Sidebar } from "./component/Sidebar";
 import { RoutesPages } from "./routes";

@@ -10,7 +10,7 @@ const HELLO_QUERY = gql`
 
 export function Hello() {
   const { data, loading, error } = useQuery(HELLO_QUERY);
-  
+
   if (loading)
     return (
       <Typography align="center" variant="h3">

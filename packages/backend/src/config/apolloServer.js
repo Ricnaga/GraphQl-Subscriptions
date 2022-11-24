@@ -4,7 +4,7 @@ const { graphQLContext } = require("./graphQLContext");
 const {
   createSubscriptionServer,
   destroySubscriptionServer,
-} = require("./SubscriptionServer");
+} = require("./subscriptionServer");
 
 // No GraphQl toda request é POST
 //Toda request bate no mesmo endpoint que por convenção fica (/graphql)

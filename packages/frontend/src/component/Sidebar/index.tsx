@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Button,
   Grid,
@@ -17,8 +18,42 @@ import {
   Home as HomeIcon,
   AccessTime as AccessTimeIcon,
 } from "@mui/icons-material";
+import {
+  HELLO,
+  LAZYQUERIES,
+  MUTATIONS,
+  QUERIES,
+  SUBSCRIPTIONS,
+} from "../../routes/route-paths";
 
-import { useState } from "react";
+const links = [
+  {
+    href: HELLO,
+    icon: <HomeIcon />,
+    primary: "Hello",
+  },
+  {
+    href: QUERIES,
+    icon: <FileCopyIcon />,
+    primary: "Queries",
+  },
+  {
+    href: LAZYQUERIES,
+    icon: <AccessTimeIcon />,
+    primary: "LazyQueries",
+  },
+  {
+    href: MUTATIONS,
+    icon: <AccountCircleIcon />,
+    primary: "Mutations",
+  },
+  {
+    href: SUBSCRIPTIONS,
+    icon: <HeadphonesIcon />,
+    primary: "Subscriptions",
+  },
+];
+
 export function Sidebar() {
   const [isDrawerOpen, setDrawerAsOpen] = useState<boolean>(false);
   return (
@@ -39,60 +74,21 @@ export function Sidebar() {
         onClose={() => setDrawerAsOpen(false)}
       >
         <List>
-          <Link color="inherit" href="/" underline="none">
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <HomeIcon />
-                </ListItemIcon>
-                <ListItemText primary="Hello" />
-              </ListItemButton>
-            </ListItem>
-          </Link>
-          
-          <Link color="inherit" href="/queries" underline="none">
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <FileCopyIcon />
-                </ListItemIcon>
-                <ListItemText primary="Queries" />
-              </ListItemButton>
-            </ListItem>
-          </Link>
-
-          <Link color="inherit" href="/mutations" underline="none">
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <AccountCircleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Mutations" />
-              </ListItemButton>
-            </ListItem>
-          </Link>
-
-          <Link color="inherit" href="/lazyqueries" underline="none">
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <AccessTimeIcon />
-                </ListItemIcon>
-                <ListItemText primary="LazyQueries" />
-              </ListItemButton>
-            </ListItem>
-          </Link>
-          
-          <Link color="inherit" href="/subscriptions" underline="none">
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <HeadphonesIcon />
-                </ListItemIcon>
-                <ListItemText primary="Subscriptions" />
-              </ListItemButton>
-            </ListItem>
-          </Link>
+          {links.map((link) => (
+            <Link
+              color="inherit"
+              href={link.href}
+              underline="none"
+              key={link.href}
+            >
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>{link.icon}</ListItemIcon>
+                  <ListItemText primary={link.primary} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          ))}
         </List>
       </SwipeableDrawer>
     </>

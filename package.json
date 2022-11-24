@@ -4,11 +4,15 @@
   "private": true,
   "scripts": {
     "backend:dev": "yarn workspace @apollo-examples/backend dev",
-    "frontend:start": "yarn workspace @apollo-examples/frontend start"
+    "frontend:start": "yarn workspace @apollo-examples/frontend start",
+    "dev": "concurrently \"yarn backend:dev\" \"yarn frontend:start\""
   },
   "workspaces": {
     "packages": [
       "packages/*"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^7.5.0"
   }
 }

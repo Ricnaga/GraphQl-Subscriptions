@@ -1,0 +1,5 @@
+export const HELLO = "/"
+export const QUERIES = "/queries"
+export const LAZYQUERIES = "/lazyqueries"
+export const MUTATIONS = "/mutations"
+export const SUBSCRIPTIONS = "/subscriptions"

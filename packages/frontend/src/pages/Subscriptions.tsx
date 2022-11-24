@@ -1,5 +1,5 @@
 import React from "react";
-import { gql, useMutation, useSubscription } from "@apollo/client";
+import { gql, useSubscription } from "@apollo/client";
 import { Card, Grid, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import { Mutations } from "./Mutations";
@@ -27,12 +27,13 @@ export function Subscriptions() {
 
   return (
     <Grid container>
-      <Grid item xs={12} >
+      <Grid item xs={12}>
         <Typography align="center" variant="h1">
           Subscriptions
         </Typography>
         <Typography align="center" variant="body1" marginY={2}>
-          Ao tentar gerar um usuário novo, a subscriptions estará escutando o resultado e imprimindo na tela :)
+          Ao tentar gerar um usuário novo, a subscriptions estará escutando o
+          resultado e imprimindo na tela :)
         </Typography>
       </Grid>
       <Grid item xs={6} paddingX={4}>
@@ -40,10 +41,10 @@ export function Subscriptions() {
       </Grid>
       {!loading && (
         <Grid item xs={6} paddingX={4}>
-            <Typography align="center" variant="body2">
-              Toda vez que uma mutation é disparada é feita a publicação na
-              subscription :)
-            </Typography>
+          <Typography align="center" variant="body2">
+            Toda vez que uma mutation é disparada é feita a publicação na
+            subscription :)
+          </Typography>
           <StyledCard>
             <Typography align="center" variant="body2">
               id:{data.userAdded._id}
